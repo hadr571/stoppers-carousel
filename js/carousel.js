@@ -47,7 +47,6 @@ window.addEventListener("resize", () => {
     // Change the variable listItemViewNum when the width is <= 600px
     if (viewportWidth <= 600) {
         listItemViewNum = 1;
-        document.querySelector(".heading-secondary--main").textContent = "Zij hebben de HoliStop methode gebruikt om te stoppen";
     }
     // Change the variable listItemViewNum when the width is <= 900px
     else if (viewportWidth <= 900) {
