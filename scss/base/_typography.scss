@@ -1,0 +1,48 @@
+//All fonts
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@font-face {
+    font-family: "Recoleta";
+    src: url("../fonts/Recoleta-Regular.ttf") format("truetype");
+    font-weight: normal;
+}
+
+body {
+    font-family: $font-family-primary;
+}
+
+.heading-secondary {
+    color: $color-light;
+    display: inline-block;
+    margin-bottom: 1rem;
+
+    &--pill {
+        display: inline-block;
+        font-size: 1.3rem;
+        font-weight: 500;
+        line-height: 2.6rem;
+        text-transform: uppercase;
+        border: 1px solid $color-secondary;
+        border-radius: 10rem;
+        background-color: rgba($color-secondary, 0.1);
+        padding: 0.1rem 1.6rem;
+        margin-bottom: 1.5rem;
+    }
+
+    &--main {
+        display: block;
+        font-family: $font-family-secondary;
+        font-size: 2.8rem;
+        line-height: 3rem;
+        font-weight: 500;
+
+        @include respond(phone) {
+            font-size: 2.5rem;
+        }
+    }
+}
+
+.paragraph {
+    font-weight: 400;
+    font-size: $default-font-size;
+    line-height: 2.1rem;
+}
