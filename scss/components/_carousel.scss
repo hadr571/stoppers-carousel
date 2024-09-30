@@ -4,22 +4,23 @@
     display: flex;
     flex-direction: column;
     position: relative;
-    width: calc(($review-card-width * 4) + ($carousel-list-gap * 3));
+    width: calc-carousel-width($review-card-width, $carousel-list-gap, 4);
     margin: auto;
 
     @include respond(tab-land) {
-        width: calc(($review-card-width * 3) + ($carousel-list-gap * 2));
+        width: calc-carousel-width($review-card-width, $carousel-list-gap, 3);
     }
 
     @include respond(tab-port) {
-        width: calc(($review-card-width * 2) + ($carousel-list-gap * 1));
+        width: calc-carousel-width($review-card-width, $carousel-list-gap, 2);
     }
 
     @include respond(phone) {
-        width: $review-card-width-phone;
+        width: calc-carousel-width($review-card-width-phone, $carousel-list-gap-phone, 1);
         overflow-x: visible;
     }
 
+    //For the fadded effect at the corners
     &__filler {
         position: absolute;
         display: block;
@@ -54,7 +55,7 @@
         display: flex;
         gap: $carousel-list-gap;
         margin-bottom: 1rem;
-        transition: transform ease-in-out 0.6s;
+        transition: transform ease-in-out 0.5s;
 
         @include respond(phone) {
             gap: $carousel-list-gap-phone;
