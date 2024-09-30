@@ -36,6 +36,14 @@ const checkWindowSize = () => {
 checkWindowSize();
 
 const moveCarouselList = (direction) => {
+    if (direction === 1 && currentIndex >= carouselItems.length - listItemViewNum) {
+        //prevents the carousel from moving further when  the last item is visible
+        return;
+    } else if (direction === -1 && currentIndex === 0) {
+        //prevents the carousel from moving backwards when it's at the first item
+        return;
+    }
+
     if (direction > 0) {
         transformState += increment;
         currentIndex++;
@@ -60,16 +68,9 @@ const moveCarouselList = (direction) => {
     }
 };
 
-btnRight.addEventListener("click", () => {
-    console.log(currentIndex, carouselItems.length - listItemViewNum);
-    if (currentIndex >= carouselItems.length - listItemViewNum) return; //prevents the carousel from moving when it's at the last visible item
-    moveCarouselList(1);
-});
+btnRight.addEventListener("click", () => moveCarouselList(1));
 
-btnLeft.addEventListener("click", () => {
-    if (currentIndex === 0) return;
-    moveCarouselList(-1);
-});
+btnLeft.addEventListener("click", () => moveCarouselList(-1));
 
 //For mobile touch devices
 let startX; // Starting x-coordinate
