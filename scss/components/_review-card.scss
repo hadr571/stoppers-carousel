@@ -1,11 +1,11 @@
 .review-card {
     background-color: $color-white;
-    width: 25rem;
+    width: $review-card-width;
     border-radius: 1.2rem;
     padding: 2rem;
 
     @include respond(phone) {
-        width: 25.5rem;
+        width: $review-card-width-phone;
     }
 
     &__header {
