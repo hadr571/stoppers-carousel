@@ -217,7 +217,7 @@ body {
   display: flex;
   gap: 2rem;
   margin-bottom: 1rem;
-  transition: transform ease-in-out 0.4s;
+  transition: transform ease-in-out 0.5s;
 }
 @media only screen and (max-width: 600px) {
   .carousel__list {

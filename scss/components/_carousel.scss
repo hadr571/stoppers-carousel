@@ -55,7 +55,7 @@
         display: flex;
         gap: $carousel-list-gap;
         margin-bottom: 1rem;
-        transition: transform ease-in-out 0.4s;
+        transition: transform ease-in-out 0.5s;
 
         @include respond(phone) {
             gap: $carousel-list-gap-phone;
