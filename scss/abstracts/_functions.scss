@@ -1,0 +1,3 @@
+@function calc-carousel-width($card-width, $list-gap, $num-items) {
+    @return calc(($card-width * $num-items) + ($list-gap * ($num-items - 1)));
+}
