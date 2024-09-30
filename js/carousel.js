@@ -16,6 +16,25 @@ const increment = itemWidth + listGap; //the distance moved after one button cli
 
 let transformState = 0; //to help keep track of transformed position of the carousel__list
 
+const checkWindowSize = () => {
+    let viewportWidth = window.innerWidth;
+
+    // Change the variable listItemViewNum when the width is <= 600px
+    if (viewportWidth <= 600) {
+        listItemViewNum = 1;
+    }
+    // Change the variable listItemViewNum when the width is <= 900px
+    else if (viewportWidth <= 900) {
+        listItemViewNum = 2;
+    }
+    // Change the variable listItemViewNum when the width is <= 900px
+    else if (viewportWidth <= 1200) {
+        listItemViewNum = 3;
+    }
+};
+
+checkWindowSize();
+
 const moveCarouselList = (direction) => {
     if (direction > 0) {
         transformState += increment;
@@ -40,23 +59,6 @@ const moveCarouselList = (direction) => {
         carousel.querySelector(".carousel__filler--right").classList.remove("carousel__filler--hidden");
     }
 };
-
-window.addEventListener("resize", () => {
-    let viewportWidth = window.innerWidth;
-
-    // Change the variable listItemViewNum when the width is <= 600px
-    if (viewportWidth <= 600) {
-        listItemViewNum = 1;
-    }
-    // Change the variable listItemViewNum when the width is <= 900px
-    else if (viewportWidth <= 900) {
-        listItemViewNum = 2;
-    }
-    // Change the variable listItemViewNum when the width is <= 900px
-    else if (viewportWidth <= 1200) {
-        listItemViewNum = 3;
-    }
-});
 
 btnRight.addEventListener("click", () => {
     console.log(currentIndex, carouselItems.length - listItemViewNum);
