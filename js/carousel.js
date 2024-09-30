@@ -26,7 +26,7 @@ export default class Carousel {
 
     moveCarouselList(direction) {
         if (direction === 1 && this.currentIndex >= this.carouselItems.length - this.listItemViewNum) {
-            //prevents the carousel from moving further when  the last item is visible
+            //prevents the carousel from moving further when the last item is visible
             return;
         } else if (direction === -1 && this.currentIndex === 0) {
             //prevents the carousel from moving backwards when it's at the first item

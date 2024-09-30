@@ -7,6 +7,10 @@ const btnLeft = document.querySelector(".carousel__btn--left");
 
 const carouselObj = new Carousel(carousel, list, btnRight, btnLeft);
 
+//check for different viewport widths
+carouselObj.checkWindowSize();
+
+//listen for the left and right button clicks
 carouselObj.btnRight.addEventListener("click", () => carouselObj.moveCarouselList(1));
 carouselObj.btnLeft.addEventListener("click", () => carouselObj.moveCarouselList(-1));
 
