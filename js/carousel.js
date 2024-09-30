@@ -13,6 +13,13 @@ export default class Carousel {
         this.increment = this.itemWidth + this.listGap;
     }
 
+    // Initialize all event listners
+    init() {
+        this.btnRight.addEventListener("click", () => this.moveCarouselList(1));
+        this.btnLeft.addEventListener("click", () => this.moveCarouselList(-1));
+        this.touchEventListners();
+    }
+
     checkWindowSize() {
         const viewportWidth = window.innerWidth;
         if (viewportWidth <= 600) {
@@ -24,6 +31,22 @@ export default class Carousel {
         }
     }
 
+    // To remove or show the filler elements for the faded effect
+    updateFillerElements() {
+        if (this.currentIndex !== 0) {
+            this.carouselElement.querySelector(".carousel__filler--left").classList.remove("carousel__filler--hidden");
+        } else {
+            this.carouselElement.querySelector(".carousel__filler--left").classList.add("carousel__filler--hidden");
+        }
+
+        if (this.currentIndex >= this.carouselItems.length - this.listItemViewNum) {
+            this.carouselElement.querySelector(".carousel__filler--right").classList.add("carousel__filler--hidden");
+        } else {
+            this.carouselElement.querySelector(".carousel__filler--right").classList.remove("carousel__filler--hidden");
+        }
+    }
+
+    // To move the carousel list one items width at a time
     moveCarouselList(direction) {
         if (direction === 1 && this.currentIndex >= this.carouselItems.length - this.listItemViewNum) {
             //prevents the carousel from moving further when the last item is visible
@@ -43,17 +66,26 @@ export default class Carousel {
 
         this.listElement.style.transform = `translateX(-${this.transformState}px)`;
 
-        if (this.currentIndex !== 0) {
-            this.carouselElement.querySelector(".carousel__filler--left").classList.remove("carousel__filler--hidden");
-        } else {
-            this.carouselElement.querySelector(".carousel__filler--left").classList.add("carousel__filler--hidden");
-        }
+        //To manipulate the fadded effect
+        this.updateFillerElements();
+    }
 
-        if (this.currentIndex >= this.carouselItems.length - this.listItemViewNum) {
-            this.carouselElement.querySelector(".carousel__filler--right").classList.add("carousel__filler--hidden");
-        } else {
-            this.carouselElement.querySelector(".carousel__filler--right").classList.remove("carousel__filler--hidden");
-        }
+    // Initialize all the touch event listners for the swipe effect
+    touchEventListners() {
+        let startX;
+        let endX;
+        // Listen for when the user starts touching the screen
+        this.carouselElement.addEventListener("touchstart", (e) => {
+            startX = e.touches[0].clientX; // Record the starting touch position (X-axis)
+        });
+        // Listen for when the user moves their finger on the screen
+        this.carouselElement.addEventListener("touchmove", (e) => {
+            endX = e.touches[0].clientX; // Record the current position as they move
+        });
+        // Listen for when the user lifts their finger off the screen
+        this.carouselElement.addEventListener("touchend", () => {
+            this.handleSwipe(startX, endX); // Trigger the function to handle swipe
+        });
     }
 
     // Function to detect swipe direction and trigger carousel sliding
