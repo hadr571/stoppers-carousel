@@ -46,27 +46,45 @@ export default class Carousel {
         }
     }
 
+    // Translate the carousel list according to the transformState
+    transformCarousel() {
+        this.listElement.style.transform = `translateX(-${this.transformState}px)`;
+    }
+
+    // Apply infinite carousel effect
+    loopCarousel(direction) {
+        if (direction === 1) {
+            this.transformState = 0;
+            this.currentIndex = 0;
+            this.transformCarousel();
+        } else {
+            console.log("hellooooo");
+            this.transformState = this.increment * (this.carouselItems.length - this.listItemViewNum);
+            this.currentIndex = this.carouselItems.length - this.listItemViewNum;
+            this.transformCarousel();
+        }
+    }
+
     // To move the carousel list one items width at a time
     moveCarouselList(direction) {
         if (direction === 1 && this.currentIndex >= this.carouselItems.length - this.listItemViewNum) {
-            //prevents the carousel from moving further when the last item is visible
-            return;
+            // Loop to start
+            this.loopCarousel(1);
         } else if (direction === -1 && this.currentIndex === 0) {
-            //prevents the carousel from moving backwards when it's at the first item
-            return;
-        }
-
-        if (direction > 0) {
-            this.transformState += this.increment;
-            this.currentIndex++;
+            // Loop to end
+            this.loopCarousel(-1);
         } else {
-            this.transformState -= this.increment;
-            this.currentIndex--;
+            if (direction > 0) {
+                this.transformState += this.increment;
+                this.currentIndex++;
+            } else {
+                this.transformState -= this.increment;
+                this.currentIndex--;
+            }
+            this.transformCarousel();
         }
 
-        this.listElement.style.transform = `translateX(-${this.transformState}px)`;
-
-        //To manipulate the fadded effect
+        // To manipulate the fadded effect
         this.updateFillerElements();
     }
 
